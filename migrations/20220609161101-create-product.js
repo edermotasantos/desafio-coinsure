@@ -20,6 +20,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
+      image: {
+        type: Sequelize.STRING
+      },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,

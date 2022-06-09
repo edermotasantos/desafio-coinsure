@@ -3,6 +3,7 @@ const Product = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       description: DataTypes.STRING,
       price: DataTypes.FLOAT,
+      image: DataTypes.STRING,
       published: DataTypes.DATE,
       updated: DataTypes.DATE,
   }, {

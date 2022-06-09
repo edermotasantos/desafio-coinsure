@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "drop": "npx sequelize-cli db:drop",
+    "prestart": "npx sequelize-cli db:drop && npx sequelize-cli",
+    "seed": "npx sequelize-cli db:seed:all",
     "start": "node index.js",
-    "drop": "npx sequelize-cli db:drop $",
-    "seed": "npx sequelize-cli db:seed:all $",
     "test": "jest",
     "test-coverage": "jest --runInBand --coverage",
     "debug": "nodemon index.js",
@@ -30,7 +30,6 @@
     "frisby": "^2.1.3",
     "jest": "^28.1.1",
     "nodemon": "^2.0.16",
-    "sequelize-cli": "^6.4.1",
     "supertest": "^6.2.3"
   }
 }
