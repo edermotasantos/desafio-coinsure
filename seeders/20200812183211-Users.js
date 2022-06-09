@@ -13,10 +13,10 @@ module.exports = {
       },
       {
         id: 2,
-        displayName: 'Nikola Tesla',
-        email: 'nikolatesla@gmail.com',
+        displayName: 'Monteiro Lobato',
+        email: 'monteirolobato@gmail.com',
         password: '123456',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Nikola_Tesla_04851u_original.jpg',
+        image: 'https://commons.wikimedia.org/wiki/File:Monteiro_Lobato_1900s.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
