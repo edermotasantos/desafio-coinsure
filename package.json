@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "drop": "npx sequelize-cli db:drop",
-    "prestart": "npx sequelize-cli db:drop && npx sequelize-cli",
-    "seed": "npx sequelize-cli db:seed:all",
-    "start": "node index.js",
+    "prestart": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "start": "npx sequelize-cli db:seed:all",
+    "client": "npm start --prefix front-end",
+    "server": "nodemon index.js",
+    "dev": "concurrently \"npm start\" \"npm run server\" \"npm run client\"",
     "test": "jest",
     "test-coverage": "jest --runInBand --coverage",
     "debug": "nodemon index.js",
@@ -26,6 +27,7 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
+    "concurrently": "^7.2.1",
     "eslint": "^8.17.0",
     "frisby": "^2.1.3",
     "jest": "^28.1.1",

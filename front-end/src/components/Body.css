@@ -1,0 +1,64 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.forms-container {
+  flex-wrap: nowrap;
+}
+
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter {
+  color: rgb(167, 163, 163);
+}
+
+.alert {
+  color: red;
+}
+
+.container-button {
+  display: flex;
+  flex-direction: row;
+}
+
+.first-question {
+  margin-top: 100px;
+}
+
+.other-ComeTogether {
+  margin-top: 30px;
+}
+
+p {
+  width: 450px;
+  margin-left: 20px;
+}
+
+h2 {
+  margin-left: 20px;
+  color: #302f2f;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  text-decoration-style: solid;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+img {
+  margin-top: 5%;
+  width: 35%;
+}
+
+.text-container {
+  width: 100%;
+}
+
+a:hover {
+  font-weight: bold;
+}
