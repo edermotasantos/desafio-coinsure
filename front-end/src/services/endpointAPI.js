@@ -24,19 +24,8 @@ export const getUserByEmail = async (userEmail) => {
 };
 
 export const registerCustomerUser = async (newUser) => {
+  console.log(newUser);
   const response = await api.post('/', newUser)
     .catch((error) => error.response);
   return response.data;
-};
-
-export const updateOrderStatus = async (status, id) => {
-  await api.patch(
-    `sales/${id}`,
-    { status },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  );
 };

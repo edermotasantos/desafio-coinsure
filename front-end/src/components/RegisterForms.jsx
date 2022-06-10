@@ -23,7 +23,7 @@ function Register() {
   const handleSubmit = async () => {
     const passwordHash = md5(password);
     const content = await registerCustomerUser(
-      { name, email, password: passwordHash },
+      { displayName: name, email, password: passwordHash },
     );
 
     if (content.message) {

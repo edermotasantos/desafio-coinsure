@@ -7,7 +7,6 @@ module.exports = {
         displayName: 'Machado de Assis',
         email: 'machadodeassis@gmail.com',
         password: '123456',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Machado_de_Assis_real_negro.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -16,7 +15,6 @@ module.exports = {
         displayName: 'Monteiro Lobato',
         email: 'monteirolobato@gmail.com',
         password: '123456',
-        image: 'https://commons.wikimedia.org/wiki/File:Monteiro_Lobato_1900s.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },

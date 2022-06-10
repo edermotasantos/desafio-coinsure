@@ -13,9 +13,7 @@ const testIdBtnLogin = 'common_login__button-login';
 const testIdBtnRegister = 'common_login__button-register';
 
 const urlByUserType = {
-  administrator: '/admin/manage',
   customer: '/customer/products',
-  seller: '/seller/orders',
 };
 
 export default function Login() {
