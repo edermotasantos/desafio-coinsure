@@ -7,7 +7,7 @@ function Body() {
   return (
     <div className="home-container">
       <img alt="banner" src={imagem} />
-      <div class="forms-container">
+      <div className="forms-container">
         <ComeTogether/>
       </div>
     </div>
