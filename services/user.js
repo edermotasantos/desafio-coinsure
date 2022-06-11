@@ -34,7 +34,7 @@ const validateNameLength = (displayName) => {
 };
 
 const validatePasswordLength = (password) => {
-  if (password.length !== 6) {
+  if (password.length < 6) {
     return { err: { statusCode: BAD_REQUEST, message: passwordLength } };
   }
 };
@@ -49,7 +49,7 @@ const validateUserData = async (email, password, displayName) => {
   }
 };
 
-const createUser = async ({ email, password, displayName, image }) => {
+const createUser = async ({ email, password, displayName }) => {
   const userData = await validateUserData(email, password, displayName);
   if (userData) return userData;
   const checkNameLength = validateNameLength(displayName);
@@ -60,7 +60,7 @@ const createUser = async ({ email, password, displayName, image }) => {
   const emailAlreadyExists = await User.findOne({ where: { email } });
   console.log(emailAlreadyExists);
   if (emailAlreadyExists) return { err: { statusCode: CONFLICT, message: userAlreadyExists } };
-  const user = await User.create({ email, password, displayName, image });
+  const user = await User.create({ email, password, displayName });
   const token = createToken(user, email);
   return { token };
 };

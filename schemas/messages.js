@@ -4,7 +4,7 @@ const {
     UNAUTHORIZED,
     NOT_FOUND,
     INTERNAL_SERVER_ERROR,
-  } = require('./statusCodes');
+} = require('./statusCodes');
   
   const messages = {
     400: {
