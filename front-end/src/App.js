@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
-// import CustomerCheckout from './CustomerCheckout';
 import Register from './pages/Register';
 import Products from './pages/Products';
 

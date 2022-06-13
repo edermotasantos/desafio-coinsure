@@ -13,7 +13,6 @@ export const doLogin = async (email, password) => {
     const result = await api.post('/login', { email, password });
     return result.data;
   } catch (e) {
-    // console.log("e.message", e.message);
     return e;
   }
 };
@@ -30,9 +29,8 @@ export const registerCustomerUser = async (newUser) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newUser)
   };
-  // console.log("requestOptions", requestOptions);
   const response = await fetch('http://localhost:3001/user/', requestOptions);
     const data = await response.json();
-    await console.log('data', data);
+    await console.log('data', {...data});
     return data;
 };

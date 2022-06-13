@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const { user } = require('../models');
 const {
   nameLength,
   passwordLength,
@@ -52,16 +52,14 @@ const validateUserData = async (email, password, displayName) => {
 const createUser = async ({ email, password, displayName }) => {
   const userData = await validateUserData(email, password, displayName);
   if (userData) return userData;
-  const checkNameLength = validateNameLength(displayName);
+  const checkNameLength = await validateNameLength(displayName);
   if (checkNameLength) return checkNameLength;
-  const checkPasswordLength = validatePasswordLength(password); 
+  const checkPasswordLength = await validatePasswordLength(password); 
   if (checkPasswordLength) return checkPasswordLength;
-
-  const emailAlreadyExists = await User.findOne({ where: { email } });
-  console.log(emailAlreadyExists);
+  const emailAlreadyExists = await user.findOne({ where: { email } });
   if (emailAlreadyExists) return { err: { statusCode: CONFLICT, message: userAlreadyExists } };
-  const user = await User.create({ email, password, displayName });
-  const token = createToken(user, email);
+  const foundUser = await user.create({ email, password, displayName });
+  const token = await createToken(foundUser, email);
   return { token };
 };
 
@@ -81,7 +79,7 @@ const existentUser = (user, password) => {
 const login = async ({ email, password }) => {
   const loginData = validateLoginData(email, password);
   if (loginData) return loginData;
-  const user = await User.findOne({ where: { email } });
+  const user = await user.findOne({ where: { email } });
   const nonExistentUser = existentUser(user, password);
   if (nonExistentUser) return nonExistentUser;
   const token = createToken(user, email);
@@ -89,12 +87,12 @@ const login = async ({ email, password }) => {
 };
 
 const listAllUsers = async () => {
-  const usersFound = User.findAll({ raw: true });
+  const usersFound = await user.findAll({ raw: true });
   return usersFound;
 };
 
 const listUserById = async (id) => {
-  const foundUserById = await User.findByPk(id, { raw: true });
+  const foundUserById = await user.findByPk(id, { raw: true });
   if (!foundUserById) {
     return { err: { statusCode: NOT_FOUND, message: userDoesntExist } };
   }

@@ -1,4 +1,4 @@
-const user = require('../services/user');
+const userService = require('../services/user');
 
 const { tryAgainLater } = require('../schemas/messages');
 
@@ -7,21 +7,21 @@ const { OK, CREATED, INTERNAL_SERVER_ERROR } = require('../schemas/statusCodes')
 const createUser = async (req, res) => {
   try {
     const { email, password, displayName, image } = req.body;
-    const userData = await user.createUser({ email, password, displayName, image });
+    const userData = await userService.createUser({ email, password, displayName, image });
     if (userData.err) {
       const { statusCode, message } = userData.err;
       return res.status(statusCode).json({ message });
     }
     return res.status(CREATED).json(userData);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).json({ message: tryAgainLater });
+    res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
   }
 };
 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const loginData = await user.login({ email, password });
+    const loginData = await userService.login({ email, password });
     if (loginData.err) {
       const { statusCode, message } = loginData.err;
       return res.status(statusCode).json({ message });
@@ -34,7 +34,7 @@ const login = async (req, res) => {
 
 const listAllUsers = async (req, res) => {
   try {
-      const foundUsers = await user.listAllUsers();
+      const foundUsers = await userService.listAllUsers();
       return res.status(OK).json(foundUsers);
   } catch (err) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: tryAgainLater });
@@ -44,7 +44,7 @@ const listAllUsers = async (req, res) => {
 const listUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const foundUserById = await user.listUserById(id);
+    const foundUserById = await userService.listUserById(id);
     if (foundUserById.err) {
       const { statusCode, message } = foundUserById.err;
       return res.status(statusCode).json({ message });

@@ -1,5 +1,5 @@
-const Product = require('../models/product');
-const User = require('../models/user');
+const { product } = require('../models');
+const { user } = require('../models');
 const {
   titleIsRequired,
   descriptionIsRequired,
@@ -13,34 +13,34 @@ const createProduct = async ({ title, description, price, id }) => {
   if (!description) return { err: { statusCode: BAD_REQUEST, message: descriptionIsRequired } };
   if (!price) return { err: { statusCode: BAD_REQUEST, message: priceIsRequired } };
 
-  const productCreated = await Product.create({ title, description, price, userId: id });
-  const productFound = await Product.findByPk(productCreated.dataValues.id, {
+  const productCreated = await product.create({ title, description, price, userId: id });
+  const productFound = await product.findByPk(productCreated.dataValues.id, {
     attributes: { exclude: ['published', 'updated'] },
   });
   return productFound;
 };
 
 const listAllProducts = async () => {
-  const allProductFound = await Product.findAll({
+  const allProductFound = await product.findAll({
     include: [
-      { model: User, as: 'user' },
+      { model: user, as: 'user' },
     ],
   });
   return allProductFound;
 };
 
 const listProductById = async (id) => {
-  const productFoundById = await Product.findOne({
+  const productFoundById = await product.findOne({
       where: { id },
       include: [
-        { model: User, as: 'user' },
+        { model: user, as: 'user' },
       ],
   });
   return productFoundById;
 };
 
 const updateProductById = async ({ id, title, description, price, email }) => {
-  const productFound = await Product.findOne({ where: { id }, include: [{ all: true }] });
+  const productFound = await product.findOne({ where: { id }, include: [{ all: true }] });
   if (productFound.dataValues.user.email !== email) {
     return { err: { statusCode: UNAUTHORIZED, message: unauthorizedUser } };
   }
