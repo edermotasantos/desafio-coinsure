@@ -23,14 +23,7 @@ export const getUserByEmail = async (userEmail) => {
 };
 
 export const registerCustomerUser = async (newUser) => {
-  console.log('newUser', newUser)
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newUser)
-  };
-  const response = await fetch('http://localhost:3001/user/', requestOptions);
-    const data = await response.json();
-    await console.log('data', {...data});
-    return data;
+  const response = await api.post('/user/', newUser)
+    .catch((error) => error.response);
+  return response.data;
 };
